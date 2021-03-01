@@ -1,0 +1,21 @@
+openapi: '3.0.3'
+
+info:
+  title: 'shop review api'
+  description: |
+    # Feature
+    - get reviews
+    - post reviews
+  termsOfService: 'https://tastylog.com/terms/'
+  contact:
+    name: 'customer support'
+    url: 'https://tastylog.com/surpport'
+    email: 'supoport-desc@tastyl.log'
+  # TODO: SPDXについて調べる
+  license:
+    name: 'MIT License'
+    url: "https://opensource.org/license/MIT"
+    
+  version: '1.0.0'
+
+paths: {}
