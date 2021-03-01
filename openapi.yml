@@ -15,17 +15,19 @@ info:
   license:
     name: "MIT License"
     url: "https://opensource.org/license/MIT"
-    
+  # API定義書のVersion
   version: "1.0.0"
 
 servers:
   #{}で変数を埋め込める
   - url: "http://localhost:{port}"
-    description: 'location development'
+    description: "local development"
     variables:
       port: 
         enum: ["3000", "8080"]
         default: "3000"
+  - url: "https://tastylog.com"
+    description: "production development"
 
 paths:
   "/shops/{shopId}/reviews":
