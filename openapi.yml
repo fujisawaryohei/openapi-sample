@@ -75,7 +75,40 @@ paths:
           description: "One time token"
           schema: { type: string }
           example: "XXXX-XXXX-XXXX-XXXX"
+      requestBody:
+        description: "Content of review"
+        required: true
+        content:
+          application/json:
+            # schema typeがobjectの場合は同じ階層にpropertiesオブジェクトを設置
+            # propertiesオブジェクトの中でプロパティとプロパティの値の型を追加
+            schema:
+              type: object
+              properties:
+                  score: { type: integer, example: 3 }
+                  comment: { type: string, example: "Delicious!!" }
       responses:
         # 201はレスポンス内容はないけど成功しているという意味
         "201":
           description: "success operation"
+          headers:
+            location:
+              description: "New URL of created review"
+              schema: { type: string, format: url }
+        "400":
+          description: "Client side error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code: { type: string }
+                  type: { type: string }
+                  message: { type: string }
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        field: { type: string }
+                        code: { type: string }
