@@ -28,7 +28,7 @@ servers:
         default: "3000"
 
 paths:
-  "/shops/{shopID}/reviews":
+  "/shops/{shopId}/reviews":
     get:
       summary: "Get specified shop reivews"
       description: "(description): Get specifed shop reviews"
@@ -38,9 +38,42 @@ paths:
       # パスパラメーターやクエリパラメーターをここで指定することができる
       parameters:
         - name: shopId
+          # query（クエリパラメーター）, header（リクエストヘッダー）, path（パスパラメーター）, cookie(cookie)
           in: path
+          description: "Shop idenftifer"
+          # パスパラメーターの際には必ずTrue
           required: true
           schema: { type: string }
+          example: "m4v517hg"
       responses:
         "200":
+          description: "success operation"
+  
+  "/shps/{shopId}/reviews":
+    post:
+      summary: "Post specified shop review"
+      description: "(description): Post specified shop reviews"
+      tags: ["shops"]
+      deprecated: false
+      parameters:
+        - name: shopId
+          in: path
+          description: "Shop idenftifer"
+          required: true
+          schema: { type: string }
+          example: "m4v517hg"
+          # ケースセンシティブではない
+        - name: X-Api-Key
+          in: header
+          description: "Request user's indenfiger"
+          schema: { type: string }
+          example: "XXXX-XXXX-XXXX-XXXX"
+        - name: token
+          in: cookie
+          description: "One time token"
+          schema: { type: string }
+          example: "XXXX-XXXX-XXXX-XXXX"
+      responses:
+        # 201はレスポンス内容はないけど成功しているという意味
+        "201":
           description: "success operation"
