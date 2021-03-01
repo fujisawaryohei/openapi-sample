@@ -1,7 +1,7 @@
 openapi: "3.0.3"
 
 info:
-  title: "Shop Review api"
+  title: "Shop Review Api"
   description: |
     # Feature
     - get reviews
@@ -27,4 +27,20 @@ servers:
         enum: ["3000", "8080"]
         default: "3000"
 
-paths: {}
+paths:
+  "/shops/{shopID}/reviews":
+    get:
+      summary: "Get specified shop reivews"
+      description: "(description): Get specifed shop reviews"
+      tags: ["shops"]
+      # trueにすると打ち消し線が入ってこのエンドポイントは廃止されたという事を明示できる
+      deprecated: false
+      # パスパラメーターやクエリパラメーターをここで指定することができる
+      parameters:
+        - name: shopId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: "success operation"
