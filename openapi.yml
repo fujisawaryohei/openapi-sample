@@ -29,41 +29,40 @@ servers:
   - url: "https://tastylog.com"
     description: "production development"
 
+tags:
+  - name: reviews
+    description: "Shop review Operation"
+
 paths:
   "/shops/{shopId}/reviews":
+    # get, postのパラメーターの共通部分の切り出し
+    parameters:
+      - name: shopId
+        # パスパラメーターやクエリパラメーターをここで指定することができる
+        # query（クエリパラメーター）, header（リクエストヘッダー）, path（パスパラメーター）, cookie(cookie)
+        in: path
+        description: "Shop idenfifer"
+        # パスパラメーターの際には必ずTrue
+        required: true
+        schema: { type: string }
+        example: "m4v517hg"
+
     get:
       summary: "Get specified shop reivews"
       description: "(description): Get specifed shop reviews"
-      tags: ["shops"]
+      tags: ["reviews"]
       # trueにすると打ち消し線が入ってこのエンドポイントは廃止されたという事を明示できる
       deprecated: false
-      # パスパラメーターやクエリパラメーターをここで指定することができる
-      parameters:
-        - name: shopId
-          # query（クエリパラメーター）, header（リクエストヘッダー）, path（パスパラメーター）, cookie(cookie)
-          in: path
-          description: "Shop idenftifer"
-          # パスパラメーターの際には必ずTrue
-          required: true
-          schema: { type: string }
-          example: "m4v517hg"
       responses:
         "200":
           description: "success operation"
   
-  "/shps/{shopId}/reviews":
     post:
       summary: "Post specified shop review"
       description: "(description): Post specified shop reviews"
-      tags: ["shops"]
+      tags: ["reviews"]
       deprecated: false
       parameters:
-        - name: shopId
-          in: path
-          description: "Shop idenftifer"
-          required: true
-          schema: { type: string }
-          example: "m4v517hg"
           # ケースセンシティブではない
         - name: X-Api-Key
           in: header
