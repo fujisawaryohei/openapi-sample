@@ -1,0 +1,19 @@
+openapi: "3.0.3"
+
+info:
+  title: "Shop Review Api"
+  description: |
+    # Schema Components
+    - review data
+  version: "1.0.0"
+
+paths: {}
+
+components:
+  schemas:
+    Review:
+      type: object
+      properties:
+        score: { type: integer }
+        comment: { type: string, example: "Delicious!!" }
+      
