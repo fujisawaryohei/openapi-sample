@@ -106,9 +106,62 @@ paths:
                   type: { type: string }
                   message: { type: string }
                   errors:
+                    # schema typeがArrayの場合は同じ階層にitemsオブジェクトを設置
                     type: array
                     items:
                       type: object
                       properties:
                         field: { type: string }
                         code: { type: string }
+
+components:
+  schemas:
+    SampleInt:
+      type: integer
+      minimum: 0
+      # 最小値を除くかどうか
+      exclusiveMinimum: false
+      maximum: 100
+      # 最大値を除くかどうか
+      exclusiveMaximum: true
+    
+    SampleString:
+      type: string
+      nullable: true
+      minLength: 10
+      maxLength: 20
+
+    SampleBoolean:
+      type: boolean
+    
+    sampleObject:
+      type: object
+      properties:
+        shop:
+          type: object
+          properties:
+            name: { type: string }
+            place: { type: string, example: "xxxx" }
+          # スキーマ以外のオブジェクトを許すかどうか
+          additionalProperties: true
+          required:
+            - name
+          # 最小プロパティ
+          minProperties: 2
+          # 最大プロパティ
+          maxProperties: 2
+        reviews:
+          type: array
+          items:
+            type: object
+            properties:
+              score: 
+                type: integer
+                enum: [1, 2, 3, 4, 5]
+              comment: { type: string, example: "Delicious!!" }
+            additionalProperties: false
+            required:
+              - score
+              - comment
+            minProperties: 2
+            maxProperties: 2
