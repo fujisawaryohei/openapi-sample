@@ -99,7 +99,7 @@ paths:
           $ref: "./responses.yml#/components/responses/400-BadRequest"
 
 components:
-  # schemaやparameters, requestBodeis, responses, headers, securityが定義でき、再利用できる。
+  # schemaやparameters, requestBodeis, responses, headers, securitSchemayが定義でき、再利用できる。
   schemas:
     SampleInt:
       type: integer
